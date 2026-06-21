@@ -1,6 +1,7 @@
 import { Hono } from "hono";
+import { serve, upgradeWebSocket } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
-import { upgradeWebSocket, websocket } from "hono/bun";
+import { WebSocketServer } from "ws";
 import { handleCallEvent, createMediaStreamHandler } from "./handlers";
 
 const app = new Hono();
@@ -21,7 +22,11 @@ app.get(
   upgradeWebSocket(() => createMediaStreamHandler())
 );
 
-export default {
+const wss = new WebSocketServer({ noServer: true });
+
+const server = serve({
   fetch: app.fetch,
-  websocket,
-};
+  websocket: { server: wss },
+});
+
+export default server;
