@@ -23,6 +23,6 @@ app.get(
 const server = Bun.serve({
   fetch: app.fetch,
   websocket,
-)};
+});
 
 export default server;
