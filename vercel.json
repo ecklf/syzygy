@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "bunVersion": "1.x",
+  "services": {
+    "clues": {
+      "root": "clues/"
+    },
+    "intercom": {
+      "root": "intercom/",
+      "entrypoint": "src/index.ts"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/intercom",
+      "destination": { "service": "intercom" }
+    },
+    {
+      "source": "/media-stream",
+      "destination": { "service": "intercom" }
+    },
+    {
+      "source": "/beep.mp3",
+      "destination": { "service": "intercom" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "clues" }
+    }
+  ]
+}
