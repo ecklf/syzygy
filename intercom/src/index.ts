@@ -20,9 +20,7 @@ app.get(
   upgradeWebSocket(() => createMediaStreamHandler())
 );
 
-const server = Bun.serve({
+export default {
   fetch: app.fetch,
   websocket,
-});
-
-export default server;
+};
