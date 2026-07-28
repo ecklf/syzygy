@@ -27,5 +27,10 @@
       "source": "/(.*)",
       "destination": { "service": "clues" }
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "VERCEL_RUST_BUN_LAYER": "arn:aws:lambda:AWS_REGION_PLACEHOLDER:338764639016:layer:vercel-rusty-runtime-bun-1_48_1-staging-c8e1c036cd-AWS_ARCH_PLACEHOLDER:1"
+    }
+  }
 }
